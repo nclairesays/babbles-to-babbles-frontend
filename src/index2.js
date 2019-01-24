@@ -15,12 +15,7 @@ function fetchPlayers (){
     .then(render)
 }
 
-function fetchQuotes (){
-    fetch('http://localhost:3000/quotes')
-    .then(res => res.json())
-    .then(json => all_quotes = json)
-    .then(render_quotes)
-}
+
 function render() {
   
     main = s('main')
@@ -43,13 +38,14 @@ function render_quotes (){
     // main.innerHTML = ''
     
     current_players.forEach(function(player){
-        player_header = c('h1')
+        player_header = document.createElement('h1')
         player_header.innerText = player.name
         let a = all_quotes[Math.random() * all_quotes.length | 0]
         let b = all_quotes[Math.random() * all_quotes.length | 0]
         let c = all_quotes[Math.random() * all_quotes.length | 0]
         let d = all_quotes[Math.random() * all_quotes.length | 0]
         quote_bucket = [a,b,c,d]
+        console.log(quote_bucket)
         
         main.append(player_header, quote_bucket)
     })
