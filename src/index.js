@@ -8,17 +8,24 @@ const qs = (arg) => {
     return document.querySelector(arg)
 }
 
-let main = qs('#all-characters-list')
+
+const main = qs('#all-characters-list')
+//functions!
+
+
+
 let heading = qs('#heading')
 let span = qs('span')
 let characters
 let currentPlayers = []
+
 let currentRound =[]
 let view = qs('#view')
 let mainButton = qs('#main-button')
 let gameStarted = false
 let rounds = []
-
+let randomCartoon
+let jumbotron = qs('.jumbotron')
 
 const fetchCharacters = () => {
     fetch(characterDataURL)
@@ -40,7 +47,7 @@ const renderCharacterCards = () => {
         characterDiv.innerHTML = `<p>${character.name} </p>`
         
         characterDiv.addEventListener('click', function(){
-            choose_players(character)
+            choosePlayer(character)
         })
         
         characterImage.dataset.character_image = character.character_image
@@ -49,14 +56,29 @@ const renderCharacterCards = () => {
         characterImage.setAttribute('style', "width:100%")
         
         characterDiv.append(characterImage)
+
         main.append(characterDiv) 
+
     })
 }
 
-let choose_players = function(player){
-   
-    if (currentPlayers.length < 4){
+function choosePlayer(player){
+    if (currentPlayers.includes(player) == true){
+        alert("choose a more original guy, plz")
+    }
+    else if(currentPlayers.length < 4){
         currentPlayers.push(player)
+        heading.innerText = 'Chosen Players'
+        renderJumbotron()
+    }
+    else{
+        alert("woah, 4 players only, bruhsky")
+    }
+}
+
+let renderJumbotron = function(){
+    span.innerHTML = ''
+    currentPlayers.forEach(function(player){
 
         const playerDiv = ce('div')
         const playerImage = ce('img')
@@ -69,15 +91,15 @@ let choose_players = function(player){
         
         deleteButton.innerText = 'X'
         playerDiv.appendChild(deleteButton)
-        
+
         playerImage.dataset.character_image = player.character_image
         playerImage.setAttribute('src', player.character_image)
         playerImage.setAttribute('class', 'img-responsive')
         playerImage.setAttribute('style', "width:100%")
-       
+        
         playerDiv.append(playerImage)
         span.append(playerDiv)
-
+     
         if (gameStarted == false) { //if true, remove delete button
             deleteButton.addEventListener('click', function(e){
                 e.preventDefault()
@@ -88,10 +110,12 @@ let choose_players = function(player){
         if (currentPlayers.length === 4){
             mainButton.style.display = 'block'
             heading.innerText = 'Click Start Game to Play'
+    
         }
-    }
-   
+    })
+ 
 }
+
 
 
 mainButton.addEventListener('click', function(e){
@@ -119,40 +143,28 @@ function remove_player(playerDiv, player){
 
 function startGame() {
     view.innerHTML = ''
-    fetchRounds()
+    fetchCartoon()
 }
 
-function fetchRounds() {
-    fetch('http://localhost:3000/rounds')
+
+function fetchCartoon(){
+    fetch('https://www.newyorker.com/cartoons/random/randomAPI')
     .then(res => res.json())
-    .then(json => allRounds= json)
-    .then(fetchRound)
+    .then(res => randomCartoon = res[0].src)
+    .then(renderCartoon)
 }
 
-function fetchRound(){
-   let randomRound = allRounds[Math.random() * allRounds.length | 0]
 
-   fetch(`http://localhost:3000/rounds/${randomRound.id}`)
-   .then(res => res.json())
-   .then(json => currentRound = json)
-   .then(renderRound)  
-}
-
-function renderRound(){
+function renderCartoon(){
     let img = ce('img')
-    img.src = currentRound.image_url
+    img.src = randomCartoon
     view.append(img)
-}
 
-
-function fetchQuotes (){
-    fetch('http://localhost:3000/quotes')
-    .then(res => res.json())
-    .then(json => all_quotes = json)
-    .then(renderQuotes)
 }
 
 
 document.addEventListener('DOMContentLoaded', () => {
     fetchCharacters()
+
 })
+
