@@ -1,9 +1,11 @@
 const characterDataURL = 'http://localhost:3000/characters'
+
 const ce = (arg) => {return document.createElement(arg)}
 const qs = (arg) => {return document.querySelector(arg)}
 
 const main = qs('#all-characters-list')
 let heading = qs('#heading')
+let jumbotron = qs('.jumbotron')
 let span = qs('span')
 let characters
 let currentPlayers = []
@@ -15,7 +17,9 @@ let mainButton = qs('#main-button')
 let gameStarted = false
 let rounds = []
 let randomCartoon
+
 let jumbotron = qs('.jumbotron')
+
 
 
 const fetchCharacters = () => {
@@ -29,14 +33,13 @@ const renderCharacterCards = () => {
     characters.forEach((character) => {
         const characterDiv = ce('div')
         const characterImage = ce('img')
-
         characterDiv.style.width = '20%'
         characterDiv.style.float = 'left'
         characterDiv.dataset.id = character.id  //why?
         characterDiv.innerHTML = `<p>${character.name} </p>`
         
         characterDiv.addEventListener('click', function(){
-            choosePlayer(character)
+            choosePlayers(character)
         })
         
         characterImage.dataset.character_image = character.character_image
@@ -45,7 +48,6 @@ const renderCharacterCards = () => {
         characterImage.setAttribute('style', "width:100%")
         
         characterDiv.append(characterImage)
-
         main.append(characterDiv)
     })
 }
@@ -81,7 +83,6 @@ let renderJumbotron = function(){
         
         deleteButton.innerText = 'X'
         playerDiv.appendChild(deleteButton)
-
         playerImage.dataset.character_image = player.character_image
         playerImage.setAttribute('src', player.character_image)
         playerImage.setAttribute('class', 'img-responsive')
@@ -89,6 +90,9 @@ let renderJumbotron = function(){
         
         playerDiv.append(playerImage)
         span.append(playerDiv)
+        
+        console.log(playerDiv)
+        view.innerHTML = playerDiv
 
 
         if (gameStarted === false) { //if true, remove delete button
@@ -98,12 +102,11 @@ let renderJumbotron = function(){
                 remove_player(playerDiv, player)
             })
         }
-        
+
         if (currentPlayers.length === 4 && gameStarted === false){
             mainButton.style.display = 'block'
             heading.innerText = 'Click Start Game to Play'
         }
-
         else if (currentPlayers.length === 4 && gameStarted === true){
             deleteButton.style.display = 'none'
             mainButton.style.display = 'none'
@@ -137,7 +140,6 @@ function remove_player(playerDiv, player){
         mainButton.style.display = 'none'
         heading.innerText = 'Choose 4 Players'
     }
-    // render()
 }
 
 function startGame() {
@@ -156,22 +158,9 @@ function renderCartoon(){
     let img = ce('img')
     img.src = randomCartoon
     view.append(img)
-
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     fetchCharacters()
 
 })
-
-
-function renderQuoteForm(){
-    currentPlayers.forEach(function(player){
-        main.innerHTML = ''
-        let quoteInput = ce('input')
-        let characterDiv = ce('div')
-        
-
-    })
-}
-
