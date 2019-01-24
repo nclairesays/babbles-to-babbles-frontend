@@ -1,4 +1,4 @@
-const playerDataURL = 'http://localhost:3000/players'
+const characterDataURL = 'http://localhost:3000/characters'
 
 const ce = (arg) => {
     return document.createElement(arg)
@@ -8,14 +8,11 @@ const qs = (arg) => {
     return document.querySelector(arg)
 }
 
-
-const main = qs('#all-characters-list')
-
+let main = qs('#all-characters-list')
 let heading = qs('#heading')
 let span = qs('span')
-let players
+let characters
 let currentPlayers = []
-
 let currentRound =[]
 let view = qs('#view')
 let mainButton = qs('#main-button')
@@ -23,49 +20,46 @@ let gameStarted = false
 let rounds = []
 
 
-const fetchPlayers = () => {
-    fetch(playerDataURL)
+const fetchCharacters = () => {
+    fetch(characterDataURL)
     .then(res => res.json())
-    .then(res => players = res)
-    .then(renderPlayerCards)
+    .then(res => characters = res)
+    .then(renderCharacterCards)
 }
 
-const renderPlayerCards = () => {
+const renderCharacterCards = () => {
     main.innerHTML = ''
     
-    players.forEach((player) => {
-        const playerDiv = ce('div')
-        const playerImage = ce('img')
+    characters.forEach((character) => {
+        const characterDiv = ce('div')
+        const characterImage = ce('img')
       
-        playerDiv.style.width = '20%'
-        playerDiv.style.float = 'left'
-        playerDiv.dataset.id = player.id  //why?
-        playerDiv.innerHTML = `<p>${player.name} </p>`
+        characterDiv.style.width = '20%'
+        characterDiv.style.float = 'left'
+        characterDiv.dataset.id = character.id  //why?
+        characterDiv.innerHTML = `<p>${character.name} </p>`
         
-        playerDiv.addEventListener('click', function(){
-            choose_players(player)
+        characterDiv.addEventListener('click', function(){
+            choose_players(character)
         })
         
-        playerImage.dataset.image_url = player.image_url
-        playerImage.setAttribute('src', player.image_url)
-        playerImage.setAttribute('class', 'img-responsive')
-        playerImage.setAttribute('style', "width:100%")
+        characterImage.dataset.character_image = character.character_image
+        characterImage.setAttribute('src', character.character_image)
+        characterImage.setAttribute('class', 'img-responsive')
+        characterImage.setAttribute('style', "width:100%")
         
-        playerDiv.append(playerImage)
-
-        main.append(playerDiv) 
-
+        characterDiv.append(characterImage)
+        main.append(characterDiv) 
     })
 }
 
 let choose_players = function(player){
-    heading.innerText = 'Chosen Players'
+   
     if (currentPlayers.length < 4){
         currentPlayers.push(player)
 
         const playerDiv = ce('div')
         const playerImage = ce('img')
-
         const deleteButton = ce('button')
         
         playerDiv.style.width = '24%'
@@ -75,16 +69,14 @@ let choose_players = function(player){
         
         deleteButton.innerText = 'X'
         playerDiv.appendChild(deleteButton)
-
         
-        playerImage.dataset.image_url = player.image_url
-        playerImage.setAttribute('src', player.image_url)
+        playerImage.dataset.character_image = player.character_image
+        playerImage.setAttribute('src', player.character_image)
         playerImage.setAttribute('class', 'img-responsive')
         playerImage.setAttribute('style', "width:100%")
        
         playerDiv.append(playerImage)
         span.append(playerDiv)
-
 
         if (gameStarted == false) { //if true, remove delete button
             deleteButton.addEventListener('click', function(e){
@@ -96,12 +88,10 @@ let choose_players = function(player){
         if (currentPlayers.length === 4){
             mainButton.style.display = 'block'
             heading.innerText = 'Click Start Game to Play'
-
         }
     }
    
 }
-
 
 
 mainButton.addEventListener('click', function(e){
@@ -152,7 +142,6 @@ function renderRound(){
     let img = ce('img')
     img.src = currentRound.image_url
     view.append(img)
-
 }
 
 
@@ -160,12 +149,10 @@ function fetchQuotes (){
     fetch('http://localhost:3000/quotes')
     .then(res => res.json())
     .then(json => all_quotes = json)
-
     .then(renderQuotes)
 }
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    fetchPlayers()
-
+    fetchCharacters()
 })
