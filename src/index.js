@@ -13,11 +13,9 @@ let heading = qs('#heading')
 let span = qs('span')
 let characters
 let currentPlayers = []
-let currentRound =[]
 let view = qs('#view')
 let mainButton = qs('#main-button')
 let gameStarted = false
-let rounds = []
 
 
 const fetchCharacters = () => {
@@ -80,7 +78,7 @@ let choose_players = function(player){
         playerDiv.append(playerImage)
         span.append(playerDiv)
 
-        if (gameStarted == false) { //if true, remove delete button
+        if (gameStarted === false) { //if true, remove delete button
             deleteButton.addEventListener('click', function(e){
                 e.preventDefault()
                 remove_player(playerDiv, player)
@@ -115,12 +113,12 @@ function remove_player(playerDiv, player){
         mainButton.style.display = 'none'
         heading.innerText = 'Choose 4 Players'
     }
-    render()          
+    // render()
 }
 
 function startGame() {
-    view.innerHTML = ''
-    fetchRounds()
+    // view.innerHTML = ''
+    renderGameView()
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -290,5 +288,5 @@ document.addEventListener('DOMContentLoaded', () => {
 // document.addEventListener('DOMContentLoaded', () => {
 //     render()
 // })
-})
+// })
 
