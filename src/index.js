@@ -1,19 +1,8 @@
 const characterDataURL = 'http://localhost:3000/characters'
-
-const ce = (arg) => {
-    return document.createElement(arg)
-}
-
-const qs = (arg) => {
-    return document.querySelector(arg)
-}
-
+const ce = (arg) => {return document.createElement(arg)}
+const qs = (arg) => {return document.querySelector(arg)}
 
 const main = qs('#all-characters-list')
-//functions!
-
-
-
 let heading = qs('#heading')
 let span = qs('span')
 let characters
@@ -33,10 +22,8 @@ const fetchCharacters = () => {
     .then(res => characters = res)
     .then(renderCharacterCards)
 }
-
 const renderCharacterCards = () => {
     main.innerHTML = ''
-    
     characters.forEach((character) => {
         const characterDiv = ce('div')
         const characterImage = ce('img')
@@ -56,9 +43,7 @@ const renderCharacterCards = () => {
         characterImage.setAttribute('style', "width:100%")
         
         characterDiv.append(characterImage)
-
         main.append(characterDiv) 
-
     })
 }
 
@@ -107,23 +92,29 @@ let renderJumbotron = function(){
             })
         }
         
-        if (currentPlayers.length === 4){
+        if (currentPlayers.length === 4 && gameStarted === false){
             mainButton.style.display = 'block'
             heading.innerText = 'Click Start Game to Play'
-    
+        }
+        else if (currentPlayers.length === 4 && gameStarted === true){
+            deleteButton.style.display = 'none'
+            mainButton.style.display = 'none'
+        }
+        else {
+            deleteButton.addEventListener('click', function(e){
+                e.preventDefault()
+                remove_player(playerDiv, player)
+            })
         }
     })
- 
 }
-
-
-
 mainButton.addEventListener('click', function(e){
     e.preventDefault()
     heading.innerText = `Welcome, Players!`
-    // gameStarted = true
+    gameStarted = true
     // deleteButton.style.display = 'none'
     startGame()
+    renderJumbotron()
 })
 
 function remove_player(playerDiv, player){
@@ -146,14 +137,12 @@ function startGame() {
     fetchCartoon()
 }
 
-
 function fetchCartoon(){
     fetch('https://www.newyorker.com/cartoons/random/randomAPI')
     .then(res => res.json())
     .then(res => randomCartoon = res[0].src)
     .then(renderCartoon)
 }
-
 
 function renderCartoon(){
     let img = ce('img')
@@ -162,9 +151,18 @@ function renderCartoon(){
 
 }
 
-
 document.addEventListener('DOMContentLoaded', () => {
     fetchCharacters()
 
 })
 
+
+function renderQuoteForm(){
+    currentPlayers.forEach(function(player){
+        main.innerHTML = ''
+        let quoteInput = ce('input')
+        let characterDiv = ce('div')
+        
+
+    })
+}
