@@ -9,26 +9,73 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-<div class="jumbotron">
-    <div class="container text-center">
-        <h1 id='heading'>Pears-To-Pears</h1>
-       
-        <span>
-           
-        </span>
-        <button id='main-button' style='display:none; margin: auto' >
+
+    <div class="jumbotron">
+        <div class="container text-center">
+            <h1 id="heading">Babbles-to-Babbles</h1>
+            <span>
+            
+            </span>
+            <button id="main-button" style="display:none; margin:auto">
                 Start Game
-        </button>
-       
+            </button>
+        </div>
     </div>
-</div>
-<div class="container-fluid bg-3 text-center" id='view'>
-    <h4>Super Smash Bros + Toad</h4><br>
-    <div class="row">
-        <main id='all-characters-list'>
-        </main>
+    
+    
+    <div class="container-fluid bg-3 text-center" id="view">
+        <div id="all-characters-view">
+            <h4>Super Smash Bros. + Toad</h4><br>
+            <div class="row">
+                <main id="all-characters-list">
+                
+                </main>
+            </div>
+        </div>
+        <div id="game-view">
+            <div id="judge" style="width: 20%; float: left">
+                judge
+            </div>
+            <div id="game-view-2" style="width: 80%; float: right">
+                <div id="players-form">
+                    form
+                    <div id="p1" style="width: 20%">
+                        p1
+                    </div>
+                    <div id="p2" style="width: 20%">
+                        p2
+                    </div>
+                    <div id="p3" style="width: 20%">
+                        p3
+                    </div>
+                    <div id="p4" style="width: 20%">
+                        p4
+                    </div>
+                    
+                </div>
+                <div id="cartoon" hidden>
+                   cartoon
+                </div>
+            </div>
+        </div>
     </div>
-</div>
-<script src="src/index.js"></script>
+
+
+    
+    
+    
+    <!--<div class="container">-->
+        <!--<div class="row">-->
+            <!--<div class="col-md-8">-->
+                <!--<img class="img-fluid">-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    
+    
+    
+    <script src="src/index.js"></script>
+    <script src="src/game.js"></script>
+
 </body>
 </html>
