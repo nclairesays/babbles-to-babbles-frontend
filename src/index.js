@@ -8,11 +8,14 @@ const qs = (arg) => {
     return document.querySelector(arg)
 }
 
-let main = qs('#all-characters-list')
+
+const main = qs('#all-characters-list')
+
 let heading = qs('#heading')
 let span = qs('span')
 let players
 let currentPlayers = []
+
 let currentRound =[]
 let view = qs('#view')
 let mainButton = qs('#main-button')
@@ -49,17 +52,20 @@ const renderPlayerCards = () => {
         playerImage.setAttribute('style', "width:100%")
         
         playerDiv.append(playerImage)
+
         main.append(playerDiv) 
+
     })
 }
 
 let choose_players = function(player){
-   
+    heading.innerText = 'Chosen Players'
     if (currentPlayers.length < 4){
         currentPlayers.push(player)
 
         const playerDiv = ce('div')
         const playerImage = ce('img')
+
         const deleteButton = ce('button')
         
         playerDiv.style.width = '24%'
@@ -69,6 +75,7 @@ let choose_players = function(player){
         
         deleteButton.innerText = 'X'
         playerDiv.appendChild(deleteButton)
+
         
         playerImage.dataset.image_url = player.image_url
         playerImage.setAttribute('src', player.image_url)
@@ -77,6 +84,7 @@ let choose_players = function(player){
        
         playerDiv.append(playerImage)
         span.append(playerDiv)
+
 
         if (gameStarted == false) { //if true, remove delete button
             deleteButton.addEventListener('click', function(e){
@@ -88,10 +96,12 @@ let choose_players = function(player){
         if (currentPlayers.length === 4){
             mainButton.style.display = 'block'
             heading.innerText = 'Click Start Game to Play'
+
         }
     }
    
 }
+
 
 
 mainButton.addEventListener('click', function(e){
@@ -142,6 +152,7 @@ function renderRound(){
     let img = ce('img')
     img.src = currentRound.image_url
     view.append(img)
+
 }
 
 
@@ -149,10 +160,12 @@ function fetchQuotes (){
     fetch('http://localhost:3000/quotes')
     .then(res => res.json())
     .then(json => all_quotes = json)
+
     .then(renderQuotes)
 }
 
 
 document.addEventListener('DOMContentLoaded', () => {
     fetchPlayers()
+
 })
