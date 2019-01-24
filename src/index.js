@@ -8,11 +8,14 @@ const qs = (arg) => {
     return document.querySelector(arg)
 }
 
-let main = qs('#all-characters-list')
+
+const main = qs('#all-characters-list')
+
 let heading = qs('#heading')
 let span = qs('span')
 let characters
 let currentPlayers = []
+
 let currentRound =[]
 let view = qs('#view')
 let mainButton = qs('#main-button')
@@ -49,17 +52,20 @@ const renderCharacterCards = () => {
         characterImage.setAttribute('style', "width:100%")
         
         characterDiv.append(characterImage)
+
         main.append(characterDiv) 
+
     })
 }
 
 let choose_players = function(player){
-   
+    heading.innerText = 'Chosen Players'
     if (currentPlayers.length < 4){
         currentPlayers.push(player)
 
         const playerDiv = ce('div')
         const playerImage = ce('img')
+
         const deleteButton = ce('button')
         
         playerDiv.style.width = '24%'
@@ -69,6 +75,7 @@ let choose_players = function(player){
         
         deleteButton.innerText = 'X'
         playerDiv.appendChild(deleteButton)
+
         
         playerImage.dataset.character_image = player.character_image
         playerImage.setAttribute('src', player.character_image)
@@ -77,6 +84,7 @@ let choose_players = function(player){
        
         playerDiv.append(playerImage)
         span.append(playerDiv)
+
 
         if (gameStarted == false) { //if true, remove delete button
             deleteButton.addEventListener('click', function(e){
@@ -88,10 +96,12 @@ let choose_players = function(player){
         if (currentPlayers.length === 4){
             mainButton.style.display = 'block'
             heading.innerText = 'Click Start Game to Play'
+
         }
     }
    
 }
+
 
 
 mainButton.addEventListener('click', function(e){
@@ -119,40 +129,43 @@ function remove_player(playerDiv, player){
 
 function startGame() {
     view.innerHTML = ''
-    fetchRounds()
+    // fetchRounds()
 }
 
-function fetchRounds() {
-    fetch('http://localhost:3000/rounds')
-    .then(res => res.json())
-    .then(json => allRounds= json)
-    .then(fetchRound)
-}
+// function fetchRounds() {
+//     fetch('http://localhost:3000/rounds')
+//     .then(res => res.json())
+//     .then(json => allRounds= json)
+//     .then(fetchRound)
+// }
 
-function fetchRound(){
-   let randomRound = allRounds[Math.random() * allRounds.length | 0]
+// function fetchRound(){
+//    let randomRound = allRounds[Math.random() * allRounds.length | 0]
 
-   fetch(`http://localhost:3000/rounds/${randomRound.id}`)
-   .then(res => res.json())
-   .then(json => currentRound = json)
-   .then(renderRound)  
-}
+//    fetch(`http://localhost:3000/rounds/${randomRound.id}`)
+//    .then(res => res.json())
+//    .then(json => currentRound = json)
+//    .then(renderRound)  
+// }
 
-function renderRound(){
-    let img = ce('img')
-    img.src = currentRound.image_url
-    view.append(img)
-}
+// function renderRound(){
+//     let img = ce('img')
+//     img.src = currentRound.image_url
+//     view.append(img)
+
+// }
 
 
-function fetchQuotes (){
-    fetch('http://localhost:3000/quotes')
-    .then(res => res.json())
-    .then(json => all_quotes = json)
-    .then(renderQuotes)
-}
+// function fetchQuotes (){
+//     fetch('http://localhost:3000/quotes')
+//     .then(res => res.json())
+//     .then(json => all_quotes = json)
+
+//     .then(renderQuotes)
+// }
 
 
 document.addEventListener('DOMContentLoaded', () => {
     fetchCharacters()
+
 })
