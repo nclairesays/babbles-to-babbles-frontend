@@ -34,12 +34,11 @@ const renderGameView = () => {
             playerComment.addEventListener('click', (e) => {
                 e.preventDefault()
                 charFormDiv.innerHTML = ''
-                charFormDiv.append(playerImg, playerInput)
                 player.quote = playerInput.value
                 quotesArr.push(player.quote)
+                charFormDiv.append(playerImg)
                 playerCaptionClicks++
                 if(playerCaptionClicks == 3){
-
                     fetchCartoon()
                 }
             })
