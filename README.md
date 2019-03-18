@@ -2,7 +2,7 @@
 
 ## FOR BACKEND
 
-<https://github.com/nclairesays/babbles-to-babbles-frontend/>
+<https://github.com/nclairesays/babbles-to-babbles-backend/>
 
 ## ABOUT
 
