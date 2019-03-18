@@ -69,7 +69,7 @@ function choosePlayer(player){
         renderJumbotron()
     }
     else{
-        alert("Woah, 4 players only, idiot")
+        alert("Woah, 4 players only!")
     }
 }
 
@@ -113,12 +113,14 @@ let renderJumbotron = function(){
             mainButton.style.display = 'none'
         }
         else if (i > 0 && i < 4){
+            deleteButton.style.display = 'none'
             mainButton.style.display = 'block'
             mainButton.innerText = 'Next Round'
             mainButton.addEventListener('click', function(){
                 playerView.innerHTML = ''
                 judgeView.innerHTML = ''
                 playerSpan.innerHTML = ''
+                mainButton.style.display = 'none'
                 renderGameView()
             })
         }
@@ -139,6 +141,31 @@ mainButton.addEventListener('click', function(e){
     startGame()
     renderJumbotron()
 })
+
+
+// const CharacterCard = (character) => {
+//     const characterDiv = ce('div')
+//     const characterImage = ce('img')
+
+//     characterDiv.style.width = '20%'
+//     characterDiv.style.float = 'left'
+//     characterDiv.dataset.id = character.id
+//     characterDiv.innerHTML = `<p>${character.name}</p>`
+    
+//     characterDiv.addEventListener('click', function(){
+//         choosePlayer(character)
+//     })
+    
+//     characterImage.dataset.character_image = character.character_image
+//     characterImage.setAttribute('src', character.character_image)
+//     characterImage.setAttribute('class', 'img-responsive')
+//     characterImage.setAttribute('style', "width:100%")
+    
+//     characterDiv.append(characterImage)
+
+//     return characterDiv
+
+// }
 
 function remove_player(playerDiv, player){
     playerDiv.innerHTML=''
