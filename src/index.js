@@ -69,7 +69,7 @@ function choosePlayer(player){
         renderJumbotron()
     }
     else{
-        alert("Woah, 4 players only, idiot")
+        alert("Woah, 4 players only!")
     }
 }
 
@@ -113,13 +113,14 @@ let renderJumbotron = function(){
             mainButton.style.display = 'none'
         }
         else if (i > 0 && i < 4){
+            deleteButton.style.display = 'none'
             mainButton.style.display = 'block'
             mainButton.innerText = 'Next Round'
             mainButton.addEventListener('click', function(){
                 playerView.innerHTML = ''
                 judgeView.innerHTML = ''
                 playerSpan.innerHTML = ''
-                mainButton.innerText = ''
+                mainButton.style.display = 'none'
                 renderGameView()
             })
         }
