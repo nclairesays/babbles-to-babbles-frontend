@@ -18,6 +18,24 @@
 #view {
     padding-left: 30vh;
     padding-right: 30vh; 
+    display: flex;
+    justify-content: center;
+    align-content: center; 
+}
+
+#game-view {
+    display: flex;
+    justify-content: space-between;
+}
+
+#judge {
+    flex: 1
+}
+
+#player-view {
+    display: flex;
+    flex: 2
+
 }
 
 body {

@@ -21,7 +21,6 @@ let playerComment;
 let playerCaptionClicks
 let judgeView = qs('#judge')
 let playerView = qs('#player-view')
-let playerSpan = qs('#player-span')
 let charView = qs('#all-characters-view')
 let quotesArr
 let winningPlayer

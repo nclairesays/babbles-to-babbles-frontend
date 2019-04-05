@@ -1,9 +1,10 @@
 const renderGameView = () => {
     
     charView.innerHTML = ''
+    charView.style.backgroundColor = 'red'
    
     playerForm = ce('form')
-    playerForm.setAttribute('style', 'display: flex; flex-direction: column')
+    playerForm.setAttribute('style', 'display: flex; flex-direction: column; flex: 1')
     judge = currentPlayers[i]
     playerCaptionClicks = 0
     quotesArr = []
@@ -13,11 +14,14 @@ const renderGameView = () => {
             let charFormDiv = ce('div')
             charFormDiv.dataset.id = player.id
             charFormDiv.setAttribute('style', 'display: inline-block')
-            // charFormDiv.style.display = 'inline'
+            charFormDiv.style.backgroundColor = 'green'
+            charFormDiv.style.flex = "2"
+            charFormDiv.style.border = "1px solid black"
+
             
             let playerImg = ce('img')
             playerImg.setAttribute('src', player.character_image)
-            playerImg.setAttribute('style', 'display: inline-block; max-width: 5em')
+            playerImg.setAttribute('style', 'display: inline-block; max-width: 8em')
             
             let playerInput = ce('input')
             playerInput.setAttribute('type', 'password')
@@ -55,11 +59,14 @@ const renderGameView = () => {
     judgeImage.setAttribute('class', 'img-responsive')
     judgeTitle.innerText = `Judge ${judge.name}`
         
+    judgeView.style.backgroundColor = 'blue'
+
     judgeView.append(judgeImage, judgeTitle )
    
 
-    playerSpan.append(playerForm)
-    playerView.append(playerSpan)
+  
+    playerView.append(playerForm)
+
      
     
 }
