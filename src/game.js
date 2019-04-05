@@ -49,12 +49,8 @@ const renderGameView = () => {
         }
     })
 
-    // const figure = ce("figure")
-     // figCaption.innerText = 'Judge'
-    // figure.append(judgeImage, figure)
-    const judgeImage = ce("img")
-    const judgeTitle = ce("h3")
-    const figCaption = ce("figcaption")
+    let judgeImage = ce("img")
+    let judgeTitle = ce("h3")
     judgeImage.setAttribute("src", judge.character_image)
     judgeImage.setAttribute('class', 'img-responsive')
     judgeTitle.innerText = `Judge ${judge.name}`
@@ -63,9 +59,11 @@ const renderGameView = () => {
 
     judgeView.append(judgeImage, judgeTitle )
    
+    playerSpan.append(playerForm)
+    playerView.append(playerSpan)
 
   
-    playerView.append(playerForm)
+    // playerView.append(playerForm)
 
      
     
