@@ -1,0 +1,16 @@
+.jumbotron {
+    /* max-height: 30vh */
+    margin-bottom: 0px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 30vh;
+    padding-right: 30vh;
+    display: flex;
+}
+
+
+#view {
+    padding-left: 30vh;
+    padding-right: 30vh; 
+}
+

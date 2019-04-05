@@ -2,7 +2,7 @@
 
 ## FOR BACKEND
 
-<https://github.com/nclairesays/babbles-to-babbles-frontend/>
+<https://github.com/nclairesays/babbles-to-babbles-backend/>
 
 ## ABOUT
 
@@ -12,7 +12,7 @@ Four players will choose their characters. Each round will start with one rotati
 
 ## REQUIREMENTS
 
-Requirements: Rails & JSON-Server
+Requirements: Rails
 
 [Install Ruby on Rails](https://guides.rubyonrails.org/v5.0/getting_started.html#installing-rails)
 
