@@ -1,11 +1,17 @@
+@font-face {
+    font-family: vcr;
+    src: url(./assets/VCR_OSD_MONO.woff);
+}
+
 .jumbotron {
     /* max-height: 30vh */
     margin-bottom: 0px;
     padding-top: 10px;
     padding-bottom: 10px;
-    padding-left: 30vh;
-    padding-right: 30vh;
+    padding-left: 25vh;
+    padding-right: 25vh;
     display: flex;
+   
 }
 
 
@@ -14,3 +20,6 @@
     padding-right: 30vh; 
 }
 
+body {
+    font-family: vcr;
+}
