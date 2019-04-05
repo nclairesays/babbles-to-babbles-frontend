@@ -4,7 +4,7 @@ const qs = (arg) => {return document.querySelector(arg)}
 
 const main = qs('#all-characters-list')
 let heading = qs('#heading')
-let span = qs('span')
+// let span = qs('span')
 let characters
 let currentPlayers = []
 let view = qs('#view')
@@ -35,13 +35,16 @@ const fetchCharacters = () => {
 const renderCharacterCards = () => {
     main.innerHTML = ''
     characters.forEach((character) => {
-        const characterDiv = ce('div')
+        // const characterDiv = ce('div')
+        const characterDiv = ce('figure')
         const characterImage = ce('img')
+        const figCaption = ce('figcaption')
 
         characterDiv.style.width = '20%'
         characterDiv.style.float = 'left'
         characterDiv.dataset.id = character.id
-        characterDiv.innerHTML = `<p>${character.name}</p>`
+
+        if(character.id % 2 == 0) {characterDiv.style.backgroundColor = "#eee"}
         
         characterDiv.addEventListener('click', function(){
             choosePlayer(character)
@@ -52,7 +55,9 @@ const renderCharacterCards = () => {
         characterImage.setAttribute('class', 'img-responsive')
         characterImage.setAttribute('style', "width:100%")
         
-        characterDiv.append(characterImage)
+        figCaption.innerText = `${character.name}`
+        characterDiv.append(characterImage, figCaption)
+
 
         main.append(characterDiv)
     })
@@ -74,20 +79,21 @@ function choosePlayer(player){
 }
 
 let renderJumbotron = function(){
-    span.innerHTML = ''
+    jumboSpan.innerHTML = ''
     
 
     currentPlayers.forEach(function(player){
-
-        let playerDiv = ce('div')
+        
+        let playerDiv = ce('figure')
         let playerImage = ce('img')
         let deleteButton = ce('button')
+        let figCaption = ce('figcaption')
         
         playerDiv.style.width = '24%'
         playerDiv.style.float = 'left'
         playerDiv.dataset.id = player.id
 
-        playerDiv.innerHTML = `<p>${player.name}</p>`
+        // playerDiv.innerHTML = `<p>${player.name}</p>`
         
         deleteButton.innerText = 'X'
         playerDiv.appendChild(deleteButton)
@@ -96,9 +102,13 @@ let renderJumbotron = function(){
         playerImage.setAttribute('src', player.character_image)
         playerImage.setAttribute('class', 'img-responsive')
         playerImage.setAttribute('style', "width:100%")
+
+        // figCaption.innerText = `${player.name}`
+        // figCaption.style.fontWeight = 'bold'
         
-        playerDiv.append(playerImage)
-        span.append(playerDiv)
+        
+        playerDiv.append(playerImage, figCaption)
+        jumboSpan.append(playerDiv)
         
         if (currentPlayers.length === 4 && gameStarted === false){
             mainButton.style.display = 'block'
@@ -111,8 +121,10 @@ let renderJumbotron = function(){
         else if (currentPlayers.length === 4 && gameStarted === true && i === 0){
             deleteButton.style.display = 'none'
             mainButton.style.display = 'none'
+            jumboSpan.innerHTML = ''
         }
         else if (i > 0 && i < 4){
+            jumboSpan.innerHTML = ''
             deleteButton.style.display = 'none'
             mainButton.style.display = 'block'
             mainButton.innerText = 'Next Round'
