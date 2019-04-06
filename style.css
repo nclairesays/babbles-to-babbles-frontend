@@ -8,19 +8,20 @@
     margin-bottom: 0px;
     padding-top: 10px;
     padding-bottom: 10px;
-    padding-left: 25vh;
-    padding-right: 25vh;
+    padding-left: 15vw;
+    padding-right: 15vw;
     display: flex;
    
 }
 
 
 #view {
-    padding-left: 30vh;
-    padding-right: 30vh; 
+    padding-left: 15vw;
+    padding-right: 15vw; 
     display: flex;
     justify-content: center;
     align-content: center; 
+    max-height: 75vh;
 }
 
 #game-view {
@@ -34,10 +35,13 @@
 
 #player-view {
     display: flex;
-    flex: 2
+    flex: 2;
+    flex-direction: column;
 
 }
 
 body {
+    /* height: 100%; */
     font-family: vcr;
+
 }

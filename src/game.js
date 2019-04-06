@@ -1,8 +1,8 @@
 const renderGameView = () => {
     
     charView.innerHTML = ''
-    charView.style.backgroundColor = 'red'
-   
+    // charView.style.backgroundColor = 'red'
+    view.setAttribute('style', 'padding: 7vh 10vw 0 10vw')
     playerForm = ce('form')
     playerForm.setAttribute('style', 'display: flex; flex-direction: column; flex: 1')
     judge = currentPlayers[i]
@@ -14,9 +14,9 @@ const renderGameView = () => {
             let charFormDiv = ce('div')
             charFormDiv.dataset.id = player.id
             charFormDiv.setAttribute('style', 'display: inline-block')
-            charFormDiv.style.backgroundColor = 'green'
-            charFormDiv.style.flex = "2"
-            charFormDiv.style.border = "1px solid black"
+            // charFormDiv.style.backgroundColor = 'green'
+            charFormDiv.style.flex = "1"
+            // charFormDiv.style.border = "1px solid black"
 
             
             let playerImg = ce('img')
@@ -27,6 +27,7 @@ const renderGameView = () => {
             playerInput.setAttribute('type', 'password')
             playerInput.setAttribute('placeholder', player.name)
             playerInput.setAttribute('id', player.id)
+            playerInput.setAttribute('style', 'height: 5vh, width: 5vw')
     
             playerComment = ce('button')
             playerComment.setAttribute('id', 'comment-button')
@@ -55,7 +56,7 @@ const renderGameView = () => {
     judgeImage.setAttribute('class', 'img-responsive')
     judgeTitle.innerText = `Judge ${judge.name}`
         
-    judgeView.style.backgroundColor = 'blue'
+    // judgeView.style.backgroundColor = 'blue'
 
     judgeView.append(judgeImage, judgeTitle )
    
@@ -81,6 +82,7 @@ function fetchCartoon(){
 function renderCartoonAndCaptions(){
     let img = ce('img')
     img.src = randomCartoon
+    // img.setAttribute('style', 'max-height: 10%, max-width: 10%')
     let captionOptions = ce('div')
     playerView.append(img, captionOptions)
     
@@ -125,24 +127,11 @@ function fetchPostWins(player, randomCartoon){
 }
 
 function renderWinner(){
-    // heading.innerText = 'Game Over, Babblers!'
-    // view.innerHTML = ''
-    // let ref = 0
-    // winningPlayer = null
-    // currentPlayers.forEach(function(player){
-    //     if(player.round_wins > ref){
-    //         ref = player.round_wins
-    //         winningPlayer = player
-    //     }
-    // })
-    // let winnerImg = ce('img')
-    // winnerImg.setAttribute('src', winningPlayer.character_image)
-    // let winnerBanner = ce('h2')
-    // winnerBanner.innerText = `🏆🏆🏆🏆🏆🏆 Scoring ${winningPlayer.round_wins} out of 4 rounds, ${winningPlayer.name} wins the game! 🏆🏆🏆🏆🏆🏆`
-    // view.append(winnerBanner, winnerImg)
-
+  
     heading.innerText = 'Game Over, Babblers!'
     view.innerHTML = ''
+    view.style.backgroundColor = "#FFDF00"
+
     let ref = 0
     winningPlayer = []
     currentPlayers.forEach(function(player){
@@ -164,7 +153,9 @@ function renderWinner(){
         winnerImg.setAttribute('src', winningPlayer[0].character_image)
         let winnerBanner = ce('h2')
         winnerBanner.innerText = `🏆🏆🏆🏆🏆🏆 Scoring ${winningPlayer[0].round_wins} out of 4 rounds, ${winningPlayer[0].name} wins the game! 🏆🏆🏆🏆🏆🏆`
-        view.append(winnerBanner, winnerImg)
+        heading.append(winnerBanner)
+        view.append(winnerImg)
+
     } else {
         let winnerBanner = ce('h2')
         let names = []
@@ -174,10 +165,13 @@ function renderWinner(){
         else { sNames = names.slice(0, -1).join(', ') + ', and ' + names.slice(-1); }
 
         winnerBanner.innerText = `🏆🏆🏆🏆🏆🏆 It was a TIE! ${sNames} win ${ref} out of 4 rounds! 🏆🏆🏆🏆🏆🏆`
-        view.append(winnerBanner)
+        // view.append(winnerBanner)
+        heading.append(winnerBanner)
         winningPlayer.forEach(winningPlayers => {
             let winnerImg = ce('img')
             winnerImg.setAttribute('src', winningPlayers.character_image)
+            winnerImg.setAttribute('style', 'flex: 1')
+
             view.appendChild(winnerImg)
         })
     }
