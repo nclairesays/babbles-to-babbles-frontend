@@ -45,3 +45,7 @@ body {
     font-family: vcr;
 
 }
+
+.option:hover {
+    cursor: pointer;
+}

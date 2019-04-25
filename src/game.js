@@ -91,6 +91,7 @@ function renderCartoonAndCaptions(){
             let p = ce('p')
             let options = ce('h3')
             options.innerText = player.quote
+            options.className = "option"
             p.append(options)
             p.addEventListener('click', function(){
                 playerView.innerHTML = ''
@@ -137,22 +138,25 @@ function renderWinner(){
     currentPlayers.forEach(function(player){
         if(player.round_wins > ref){
             ref = player.round_wins
-            winningPlayer.splice(0, winningPlayer.length-1, player)
-            console.log('REF', ref, 'WINNING PLAYER', winningPlayer)
+            winningPlayer.splice(0, winningPlayer[-1], player)
+            console.log("IF!",  'currentplayer', player, 'ref', ref, 'winning player array', winningPlayer)
         }
         else if (player.round_wins == ref){
-            console.log('the player', player)
+            console.log("ELSE IF 1!", 'currentplayer', player, 'ref', ref, 'winning player array', winningPlayer)
             winningPlayer.push(player)
-            console.log("WINNING PLAYER ARRAY", winningPlayer)
+            console.log("ELSE IF 2!", 'ref', ref, 'winning player array', winningPlayer)
 
+        } else{
+            console.log("ELSE!",'currentplayer', player, 'ref', ref, 'winning player array', winningPlayer)
         }
     })
 
     if (winningPlayer.length == 1){
         let winnerImg = ce('img')
         winnerImg.setAttribute('src', winningPlayer[0].character_image)
+        // winnerImg.setAttribute('style', 'display: inline-block; max-width: 20vw; max-height: 50vh; padding:20px;')
         let winnerBanner = ce('h2')
-        winnerBanner.innerText = `🏆🏆🏆🏆🏆🏆 Scoring ${winningPlayer[0].round_wins} out of 4 rounds, ${winningPlayer[0].name} wins the game! 🏆🏆🏆🏆🏆🏆`
+        winnerBanner.innerHTML = `🏆🏆🏆🏆🏆🏆 <br> Scoring ${winningPlayer[0].round_wins} out of 4 rounds, <br>  ${winningPlayer[0].name} wins the game! <br> 🏆🏆🏆🏆🏆🏆`
         heading.append(winnerBanner)
         view.append(winnerImg)
 
@@ -164,14 +168,13 @@ function renderWinner(){
         if (names.length == 2) { sNames = names.join(' and ');}
         else { sNames = names.slice(0, -1).join(', ') + ', and ' + names.slice(-1); }
 
-        winnerBanner.innerText = `🏆🏆🏆🏆🏆🏆 It was a TIE! ${sNames} win ${ref} out of 4 rounds! 🏆🏆🏆🏆🏆🏆`
-        // view.append(winnerBanner)
+        winnerBanner.innerHTML = `🏆🏆🏆🏆🏆🏆 <br> It was a TIE! <br> ${sNames} win ${ref} out of 4 rounds! <br> 🏆🏆🏆🏆🏆🏆`
         heading.append(winnerBanner)
         winningPlayer.forEach(winningPlayers => {
             let winnerImg = ce('img')
             winnerImg.setAttribute('src', winningPlayers.character_image)
-            winnerImg.setAttribute('style', 'flex: 1')
-
+            // winnerImg.setAttribute('style', 'flex: 1')
+            winnerImg.setAttribute('style', 'display: inline-block; max-width: 20vw; max-height: 60vh; padding:20px;')
             view.appendChild(winnerImg)
         })
     }
