@@ -168,13 +168,13 @@ function renderWinner(){
         if (names.length == 2) { sNames = names.join(' and ');}
         else { sNames = names.slice(0, -1).join(', ') + ', and ' + names.slice(-1); }
 
-        winnerBanner.innerHTML = `🏆🏆🏆🏆🏆🏆 <br> It was a TIE! <br> ${sNames} win ${ref} out of 4 rounds! <br> 🏆🏆🏆🏆🏆🏆`
+        winnerBanner.innerHTML = `🏆🏆🏆🏆🏆🏆 <br> It is a TIE! <br> ${sNames} win ${ref} out of 4 rounds! <br> 🏆🏆🏆🏆🏆🏆`
         heading.append(winnerBanner)
         winningPlayer.forEach(winningPlayers => {
             let winnerImg = ce('img')
             winnerImg.setAttribute('src', winningPlayers.character_image)
             // winnerImg.setAttribute('style', 'flex: 1')
-            winnerImg.setAttribute('style', 'display: inline-block; max-width: 20vw; max-height: 60vh; padding:20px;')
+            winnerImg.setAttribute('style', 'display: inline-block; width: 20w; max-width: 20vw;min-width: 20vw; max-height: 50vh; padding:0 10px 10px 10px;')
             view.appendChild(winnerImg)
         })
     }
