@@ -30,14 +30,18 @@
 }
 
 #judge {
-    flex: 1
+    flex: 1;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
 }
+
 
 #player-view {
     display: flex;
     flex: 2;
     flex-direction: column;
-
+    justify-content: center;
 }
 
 body {
@@ -49,3 +53,23 @@ body {
 .option:hover {
     cursor: pointer;
 }
+
+
+@media screen and (max-width: 800px) {
+  
+    #player-span > form > div {
+        flex: none;
+        display: inline-grid;
+        justify-content: center;
+    }
+
+    #splayer-span {
+        flex: 1
+    }
+
+    #player-span > form > div > img {
+        border-radius: 50;
+        margin: 0 auto;
+    }
+
+  }

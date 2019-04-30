@@ -1,4 +1,8 @@
-const characterDataURL = 'http://localhost:3000/characters'
+const url ='https://protected-cliffs-89398.herokuapp.com'
+// const url = 'http://localhost:3000'
+const characterDataURL = `${url}/characters`
+
+
 const ce = (arg) => {return document.createElement(arg)}
 const qs = (arg) => {return document.querySelector(arg)}
 

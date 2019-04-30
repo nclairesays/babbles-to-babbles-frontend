@@ -13,7 +13,7 @@ const renderGameView = () => {
         if (player !== judge) {
             let charFormDiv = ce('div')
             charFormDiv.dataset.id = player.id
-            charFormDiv.setAttribute('style', 'display: inline-block')
+            // charFormDiv.setAttribute('style', 'display: inline-grid')
             // charFormDiv.style.backgroundColor = 'green'
             charFormDiv.style.flex = "1"
             // charFormDiv.style.border = "1px solid black"
@@ -53,7 +53,8 @@ const renderGameView = () => {
     let judgeImage = ce("img")
     let judgeTitle = ce("h3")
     judgeImage.setAttribute("src", judge.character_image)
-    judgeImage.setAttribute('class', 'img-responsive')
+    // judgeImage.setAttribute('class', 'img-responsive')
+    judgeImage.style = "max-width: 90%; min-width: 80%"
     judgeTitle.innerText = `Judge ${judge.name}`
         
     // judgeView.style.backgroundColor = 'blue'
