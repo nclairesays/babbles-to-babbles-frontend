@@ -98,6 +98,7 @@ function renderCartoonAndCaptions(){
                 playerView.innerHTML = ''
                 let winMessage = ce('h2')
                 heading.innerText = `${player.name} wins this round!`
+                jumbotron.style.backgroundColor = "#FFDF00"
                 playerView.append(img, p)
                 i++
                 player.round_wins += 1
@@ -133,6 +134,8 @@ function renderWinner(){
     heading.innerText = 'Game Over, Babblers!'
     view.innerHTML = ''
     view.style.backgroundColor = "#FFDF00"
+    jumbotron.style.backgroundColor = "#eee"
+
 
     let ref = 0
     winningPlayer = []
